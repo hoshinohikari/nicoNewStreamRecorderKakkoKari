@@ -1,0 +1,42 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: build for dotnet ${{ matrix.dotnet-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        dotnet-version: ['7.0.x']
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with: 
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Build
+      run: |
+        cd nicoNewStreamRecorderKakkoKari
+        dotnet build -p:PublishSingleFile=true --self-contained false -c Release
+    - name: Test
+      run: |
+        cd nicoNewStreamRecorderKakkoKari
+        dotnet test --no-build --verbosity normal
+    - name: PostBuild | Prepare Windows
+      if: matrix.os == 'windows-latest'
+      run: |
+        mv nicoNewStreamRecorderKakkoKari/bin/Release nicoNewStreamRecorderKakkoKari-windows-latest
+        7z a nicoNewStreamRecorderKakkoKari-windows-latest.zip nicoNewStreamRecorderKakkoKari-windows-latest
+    - name: Deploy | Upload Windows
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: nicoNewStreamRecorderKakkoKari-windows-latest.zip
+        path: nicoNewStreamRecorderKakkoKari-windows-latest.zip
