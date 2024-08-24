@@ -6,7 +6,20 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-
+using System;
+using System.Linq;
+using System.Net;
+using System.Xml.Linq;
+using WebSocket4Net;
+using System.Security.Authentication;
+using System.IO;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using System.Threading;
+using System.Drawing;
+using namaichi.info;
 
 /*
 namespace namaichi.rec
@@ -333,4 +346,3 @@ namespace namaichi.rec
 	}
 }
 */
-

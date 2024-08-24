@@ -1,31 +1,85 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <AssemblyName>ニコ生新配信録画ツール（仮</AssemblyName>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <BaseOutputPath>..\bin\</BaseOutputPath>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <StartupObject>namaichi.Program</StartupObject>
+    <StartAction>Project</StartAction>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
-    <ApplicationIcon>..\(rec3.ico</ApplicationIcon>
+    <ApplicationIcon>..\%28rec3.ico</ApplicationIcon>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>kari.snk</AssemblyOriginatorKeyFile>
     <DelaySign>False</DelaySign>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'ondebugRelease' ">
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+  </PropertyGroup>
   <ItemGroup>
-    <Content Include="..\(rec3.ico" />
+    <Reference Update="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Update="System.Runtime.Serialization">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Update="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    <PackageReference Include="SnkLib.App.CookieGetter" Version="2.3.1" />
-    <PackageReference Include="SnkLib.App.CookieGetter.Forms" Version="1.4.0" />
-    <PackageReference Include="SuperSocket.ClientEngine" Version="0.10.0" />
+    <Compile Update="src\gui\NicoSessionComboBox2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="src\gui\placeHolderText.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="src\gui\placeTextBox5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="curl_wrap.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="libcurl.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Collections.Immutable" Version="9.0.0-preview.7.24405.7" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.Xdt" Version="3.1.0" />
+    <PackageReference Include="protobuf-net" Version="3.2.30" />
+    <PackageReference Include="protobuf-net.Core" Version="3.2.30" />
+    <PackageReference Include="Stub.System.Data.SQLite.Core.NetFramework" Version="1.0.118.0" />
+    <PackageReference Include="SuperSocket.ClientEngine.Core" Version="0.10.0" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118.0" />
     <PackageReference Include="WebSocket4Net" Version="0.15.2" />
-    <PackageReference Include="WindowsAPICodePack" Version="7.0.1" />
+    <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+    <PackageReference Include="WindowsAPICodePack-ShellExtensions" Version="1.1.1" />
   </ItemGroup>
-
+  <ItemGroup>
+    <EmbeddedResource Remove="app.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SnkLib.App.CookieGetter\Net4.5\SnkLib.App.CookieGetter.Forms\SnkLib.App.CookieGetter.Forms.csproj" />
+    <ProjectReference Include="..\..\..\SnkLib.App.CookieGetter\Net4.5\SnkLib.App.CookieGetter\SnkLib.App.CookieGetter.csproj" />
+  </ItemGroup>
 </Project>

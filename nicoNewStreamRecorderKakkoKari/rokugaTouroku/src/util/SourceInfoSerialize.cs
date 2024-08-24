@@ -6,82 +6,73 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
+using System;
 using SunokoLibrary.Application;
+using System.Xml.Serialization;
+using System.IO;
 
-/// <summary>
-///     Description of namaichiUtil.
-/// </summary>
+
+	/// <summary>
+	/// Description of namaichiUtil.
+	/// </summary>
 public class SourceInfoSerialize
 {
-    public static void save(CookieSourceInfo si, bool isSub)
-    {
+	public static void save(CookieSourceInfo si, bool isSub) {
 //		var sio = new SourceInfoObject(si);
 //		XmlSerializer serializer = new XmlSerializer(typeof(SourceInfoObject));
-        var serializer = new XmlSerializer(typeof(CookieSourceInfo));
-
-        var jarPath = util.getJarPath();
-        try
-        {
-            var uri = isSub ? jarPath[0] + "\\ニコ生新配信録画ツール（仮0.xml" : jarPath[0] + "\\ニコ生新配信録画ツール（仮.xml";
-            var sw = new StreamWriter(uri, false, Encoding.UTF8);
-
-            serializer.Serialize(sw, si);
-            sw.Close();
-        }
-        catch (Exception e)
-        {
-            util.debugWriteLine(e.Message + " " + e.StackTrace + " " + e.TargetSite);
-        }
-    }
-
-    public static CookieSourceInfo load(bool isSub)
-    {
+		XmlSerializer serializer = new XmlSerializer(typeof(CookieSourceInfo));
+		
+		var jarPath = util.getJarPath();
+		try {
+			var uri = (isSub) ? (jarPath[0] + "\\ニコ生新配信録画ツール（仮0.xml") :
+				(jarPath[0] + "\\ニコ生新配信録画ツール（仮.xml");
+			var sw = new System.IO.StreamWriter(uri, false, System.Text.Encoding.UTF8);
+		
+			serializer.Serialize(sw, si);
+			sw.Close();
+		} catch (Exception e) {
+			util.debugWriteLine(e.Message + " " + e.StackTrace + " " + e.TargetSite);
+		}
+	}
+	public static CookieSourceInfo load(bool isSub) {
 //		var sio = new SourceInfoObject(si);
 //		XmlSerializer serializer = new XmlSerializer(typeof(SourceInfoObject));
-        var serializer = new XmlSerializer(typeof(CookieSourceInfo));
-
+		XmlSerializer serializer = new XmlSerializer(typeof(CookieSourceInfo));
+		
 //		var sr = new System.IO.StreamReader(util.getJarPath()[1] + ".xml", System.Text.Encoding.UTF8);
 //		var str = sr.ReadToEnd();
-
-        var IsCustomized = false;
-        string BrowserName = "", ProfileName = "", CookiePath = "", EngineId = "";
-        var x = new XmlDocument();
-        var jarPath = util.getJarPath();
-        try
-        {
-            var uri = isSub ? jarPath[0] + "\\ニコ生新配信録画ツール（仮0.xml" : jarPath[0] + "\\ニコ生新配信録画ツール（仮.xml";
-            x.Load(uri);
-        }
-        catch (Exception)
-        {
-            return null;
-        }
-
-        foreach (XmlNode n in x.LastChild.ChildNodes)
-        {
-            util.debugWriteLine(n.Name + " " + n.InnerText);
-            if (n.Name == "IsCustomized") IsCustomized = bool.Parse(n.InnerText);
-            if (n.Name == "BrowserName") BrowserName = n.InnerText;
-            if (n.Name == "ProfileName") ProfileName = n.InnerText;
-            if (n.Name == "CookiePath") CookiePath = n.InnerText;
-            if (n.Name == "EngineId") EngineId = n.InnerText;
-        }
-
-        return new CookieSourceInfo(BrowserName,
-            ProfileName, CookiePath, EngineId, IsCustomized);
-
+		
+		bool IsCustomized = false;
+		string BrowserName = "", ProfileName = "", CookiePath = "", EngineId = "";
+		var x = new System.Xml.XmlDocument();
+		var jarPath = util.getJarPath();
+		try {
+			var uri = (isSub) ? (jarPath[0] + "\\ニコ生新配信録画ツール（仮0.xml") :
+				(jarPath[0] + "\\ニコ生新配信録画ツール（仮.xml");
+			x.Load(uri);
+		} catch (Exception) {
+			return null;
+		}
+		foreach (System.Xml.XmlNode n in x.LastChild.ChildNodes) {
+			util.debugWriteLine(n.Name + " " + n.InnerText);
+			if (n.Name == "IsCustomized") IsCustomized = bool.Parse(n.InnerText);
+			if (n.Name == "BrowserName") BrowserName = n.InnerText;
+			if (n.Name == "ProfileName") ProfileName = n.InnerText;
+			if (n.Name == "CookiePath") CookiePath = n.InnerText;
+			if (n.Name == "EngineId") EngineId = n.InnerText;
+		}
+		return new CookieSourceInfo(BrowserName, 
+				ProfileName, CookiePath, EngineId, IsCustomized);
+		
 //		return (CookieSourceInfo)serializer.Deserialize(sr);
 //		sr.Close();
 //		return null;
-    }
-    /*
-    public static void ReadXml(CookieSourceInfo si)
+		
+	}
+	/*
+	public static void ReadXml(CookieSourceInfo si)
         {
-        var reader = System.Xml.XmlReader.Create(util.getJarPath()[1]);
+		var reader = System.Xml.XmlReader.Create(util.getJarPath()[1]);
             //?????????
             if (reader.IsEmptyElement)
             {

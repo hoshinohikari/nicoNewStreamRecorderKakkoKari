@@ -10,6 +10,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rokugaTouroku", "rokugaTour
 		{897CE9BB-A792-477E-9A0B-7CC9924A946A} = {897CE9BB-A792-477E-9A0B-7CC9924A946A}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnkLib.App.CookieGetter.Forms", "..\..\SnkLib.App.CookieGetter\Net4.5\SnkLib.App.CookieGetter.Forms\SnkLib.App.CookieGetter.Forms.csproj", "{21C104C4-9DDD-4449-B3CE-BD69068333DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnkLib.App.CookieGetter", "..\..\SnkLib.App.CookieGetter\Net4.5\SnkLib.App.CookieGetter\SnkLib.App.CookieGetter.csproj", "{BB3F3039-E8C2-4CB8-9257-59B92F03A87C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,14 @@ Global
 		{13F3C8C9-CF28-46EA-8083-B7DD37508D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13F3C8C9-CF28-46EA-8083-B7DD37508D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13F3C8C9-CF28-46EA-8083-B7DD37508D28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21C104C4-9DDD-4449-B3CE-BD69068333DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C104C4-9DDD-4449-B3CE-BD69068333DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C104C4-9DDD-4449-B3CE-BD69068333DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C104C4-9DDD-4449-B3CE-BD69068333DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB3F3039-E8C2-4CB8-9257-59B92F03A87C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3F3039-E8C2-4CB8-9257-59B92F03A87C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3F3039-E8C2-4CB8-9257-59B92F03A87C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3F3039-E8C2-4CB8-9257-59B92F03A87C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

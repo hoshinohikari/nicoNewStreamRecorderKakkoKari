@@ -97,6 +97,8 @@ namespace namaichi
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.afterConvertModeList = new System.Windows.Forms.ComboBox();
+			this.afterConvertModeCmdText = new System.Windows.Forms.TextBox();
+			this.afterConvertModeCmdDefaultBtn = new System.Windows.Forms.Button();
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.latencyList = new System.Windows.Forms.ComboBox();
@@ -199,7 +201,6 @@ namespace namaichi
 			this.anotherCommentViewerPathText = new System.Windows.Forms.TextBox();
 			this.anotherCommentViewerSanshouBtn = new System.Windows.Forms.Button();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.label13 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.fileNameTypeDokujiSetteiBtn = new System.Windows.Forms.Button();
 			this.fileNameTypeRadioBtn9 = new System.Windows.Forms.RadioButton();
@@ -213,16 +214,19 @@ namespace namaichi
 			this.fileNameTypeRadioBtn1 = new System.Windows.Forms.RadioButton();
 			this.fileNameTypeRadioBtn0 = new System.Windows.Forms.RadioButton();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.secondRecFolderSanshouBtn = new System.Windows.Forms.Button();
 			this.userIDHousoushaRadioBtn = new System.Windows.Forms.RadioButton();
+			this.useDefaultRecFolderChk = new System.Windows.Forms.CheckBox();
 			this.userIDRadioBtn = new System.Windows.Forms.RadioButton();
 			this.ComIDComNameRadioBtn = new System.Windows.Forms.RadioButton();
+			this.secondRecFolderText = new System.Windows.Forms.TextBox();
 			this.comIDRadioBtn = new System.Windows.Forms.RadioButton();
 			this.housoushaComIDRadioBtn = new System.Windows.Forms.RadioButton();
+			this.useSecondRecFolderChk = new System.Windows.Forms.CheckBox();
 			this.comIDHousoushaRadioBtn = new System.Windows.Forms.RadioButton();
 			this.comNameRadioBtn = new System.Windows.Forms.RadioButton();
 			this.housoushaRadioBtn = new System.Windows.Forms.RadioButton();
 			this.useSubFolderChk = new System.Windows.Forms.CheckBox();
-			this.useDefaultRecFolderChk = new System.Windows.Forms.CheckBox();
 			this.recFolderSanshouBtn = new System.Windows.Forms.Button();
 			this.recordDirectoryText = new System.Windows.Forms.TextBox();
 			this.button3 = new System.Windows.Forms.Button();
@@ -888,6 +892,8 @@ namespace namaichi
 			// 
 			this.groupBox4.Controls.Add(this.label4);
 			this.groupBox4.Controls.Add(this.afterConvertModeList);
+			this.groupBox4.Controls.Add(this.afterConvertModeCmdText);
+			this.groupBox4.Controls.Add(this.afterConvertModeCmdDefaultBtn);
 			this.groupBox4.Location = new System.Drawing.Point(5, 404);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(408, 99);
@@ -929,6 +935,24 @@ namespace namaichi
 			this.afterConvertModeList.Name = "afterConvertModeList";
 			this.afterConvertModeList.Size = new System.Drawing.Size(149, 20);
 			this.afterConvertModeList.TabIndex = 6;
+			this.afterConvertModeList.SelectedIndexChanged += new System.EventHandler(this.AfterConvertModeListSelectedIndexChanged);
+			// 
+			// afterConvertModeCmdText
+			// 
+			this.afterConvertModeCmdText.Location = new System.Drawing.Point(177, 18);
+			this.afterConvertModeCmdText.Name = "afterConvertModeCmdText";
+			this.afterConvertModeCmdText.Size = new System.Drawing.Size(161, 19);
+			this.afterConvertModeCmdText.TabIndex = 28;
+			// 
+			// afterConvertModeCmdDefaultBtn
+			// 
+			this.afterConvertModeCmdDefaultBtn.Location = new System.Drawing.Point(344, 16);
+			this.afterConvertModeCmdDefaultBtn.Name = "afterConvertModeCmdDefaultBtn";
+			this.afterConvertModeCmdDefaultBtn.Size = new System.Drawing.Size(58, 23);
+			this.afterConvertModeCmdDefaultBtn.TabIndex = 30;
+			this.afterConvertModeCmdDefaultBtn.Text = "デフォルト";
+			this.afterConvertModeCmdDefaultBtn.UseVisualStyleBackColor = true;
+			this.afterConvertModeCmdDefaultBtn.Click += new System.EventHandler(this.AfterConvertModeCmdDefaultBtnClick);
 			// 
 			// groupBox10
 			// 
@@ -995,6 +1019,7 @@ namespace namaichi
 			this.rtmpPathSanshouBtn.TabIndex = 30;
 			this.rtmpPathSanshouBtn.Text = "参照";
 			this.rtmpPathSanshouBtn.UseVisualStyleBackColor = true;
+			this.rtmpPathSanshouBtn.Visible = false;
 			this.rtmpPathSanshouBtn.Click += new System.EventHandler(this.RtmpPathSanshouBtnClick);
 			// 
 			// isDefaultRtmpChkBox
@@ -1005,6 +1030,7 @@ namespace namaichi
 			this.isDefaultRtmpChkBox.TabIndex = 29;
 			this.isDefaultRtmpChkBox.Text = "デフォルトのrtmpdumpを使う";
 			this.isDefaultRtmpChkBox.UseVisualStyleBackColor = true;
+			this.isDefaultRtmpChkBox.Visible = false;
 			this.isDefaultRtmpChkBox.CheckedChanged += new System.EventHandler(this.isDefaultEngineChkBox_CheckedChanged);
 			// 
 			// rtmpPathText
@@ -1013,6 +1039,7 @@ namespace namaichi
 			this.rtmpPathText.Name = "rtmpPathText";
 			this.rtmpPathText.Size = new System.Drawing.Size(265, 19);
 			this.rtmpPathText.TabIndex = 28;
+			this.rtmpPathText.Visible = false;
 			// 
 			// isNoEngine
 			// 
@@ -1032,6 +1059,7 @@ namespace namaichi
 			this.isRtmpEngine.TabIndex = 27;
 			this.isRtmpEngine.Text = "RTMP録画エンジンを使う(旧配信のタイムシフト及び公式のリアルタイム配信のみ)";
 			this.isRtmpEngine.UseVisualStyleBackColor = true;
+			this.isRtmpEngine.Visible = false;
 			this.isRtmpEngine.CheckedChanged += new System.EventHandler(this.isDefaultEngineChkBox_CheckedChanged);
 			// 
 			// label8
@@ -1421,7 +1449,7 @@ namespace namaichi
 			this.groupBox3.Controls.Add(this.useSecondLoginChkBox);
 			this.groupBox3.Location = new System.Drawing.Point(5, 10);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(385, 275);
+			this.groupBox3.Size = new System.Drawing.Size(414, 275);
 			this.groupBox3.TabIndex = 18;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "ニコニコ動画アカウントの共有　(普段ニコニコ生放送を見ているブラウザ)";
@@ -1461,6 +1489,7 @@ namespace namaichi
 			this.useAccountLoginRadioBtn.TabStop = true;
 			this.useAccountLoginRadioBtn.Text = "ブラウザとクッキーを共有せず、次のアカウントでログインする";
 			this.useAccountLoginRadioBtn.UseVisualStyleBackColor = true;
+			this.useAccountLoginRadioBtn.CheckedChanged += new System.EventHandler(this.LoginRadioBtnCheckedChanged);
 			// 
 			// useCookieRadioBtn
 			// 
@@ -1472,6 +1501,7 @@ namespace namaichi
 			this.useCookieRadioBtn.TabStop = true;
 			this.useCookieRadioBtn.Text = "次のブラウザとクッキーを共有する";
 			this.useCookieRadioBtn.UseVisualStyleBackColor = true;
+			this.useCookieRadioBtn.CheckedChanged += new System.EventHandler(this.LoginRadioBtnCheckedChanged);
 			// 
 			// passText
 			// 
@@ -2007,7 +2037,6 @@ namespace namaichi
 			// 
 			// tabPage3
 			// 
-			this.tabPage3.Controls.Add(this.label13);
 			this.tabPage3.Controls.Add(this.groupBox2);
 			this.tabPage3.Controls.Add(this.groupBox1);
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -2018,14 +2047,6 @@ namespace namaichi
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "録画";
 			this.tabPage3.UseVisualStyleBackColor = true;
-			// 
-			// label13
-			// 
-			this.label13.Location = new System.Drawing.Point(9, 468);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(361, 15);
-			this.label13.TabIndex = 2;
-			this.label13.Text = "保存パスが長くなりすぎた場合、放送IDのみのファイル名で保存されます。";
 			// 
 			// groupBox2
 			// 
@@ -2040,7 +2061,7 @@ namespace namaichi
 			this.groupBox2.Controls.Add(this.fileNameTypeRadioBtn2);
 			this.groupBox2.Controls.Add(this.fileNameTypeRadioBtn1);
 			this.groupBox2.Controls.Add(this.fileNameTypeRadioBtn0);
-			this.groupBox2.Location = new System.Drawing.Point(5, 173);
+			this.groupBox2.Location = new System.Drawing.Point(5, 210);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(365, 283);
 			this.groupBox2.TabIndex = 1;
@@ -2168,110 +2189,49 @@ namespace namaichi
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.secondRecFolderSanshouBtn);
 			this.groupBox1.Controls.Add(this.userIDHousoushaRadioBtn);
+			this.groupBox1.Controls.Add(this.useDefaultRecFolderChk);
 			this.groupBox1.Controls.Add(this.userIDRadioBtn);
 			this.groupBox1.Controls.Add(this.ComIDComNameRadioBtn);
+			this.groupBox1.Controls.Add(this.secondRecFolderText);
 			this.groupBox1.Controls.Add(this.comIDRadioBtn);
 			this.groupBox1.Controls.Add(this.housoushaComIDRadioBtn);
+			this.groupBox1.Controls.Add(this.useSecondRecFolderChk);
 			this.groupBox1.Controls.Add(this.comIDHousoushaRadioBtn);
 			this.groupBox1.Controls.Add(this.comNameRadioBtn);
 			this.groupBox1.Controls.Add(this.housoushaRadioBtn);
 			this.groupBox1.Controls.Add(this.useSubFolderChk);
-			this.groupBox1.Controls.Add(this.useDefaultRecFolderChk);
 			this.groupBox1.Controls.Add(this.recFolderSanshouBtn);
 			this.groupBox1.Controls.Add(this.recordDirectoryText);
 			this.groupBox1.Location = new System.Drawing.Point(5, 10);
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox1.Size = new System.Drawing.Size(366, 156);
+			this.groupBox1.Size = new System.Drawing.Size(366, 195);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "録画保存先フォルダ";
 			// 
+			// secondRecFolderSanshouBtn
+			// 
+			this.secondRecFolderSanshouBtn.Location = new System.Drawing.Point(312, 81);
+			this.secondRecFolderSanshouBtn.Margin = new System.Windows.Forms.Padding(2);
+			this.secondRecFolderSanshouBtn.Name = "secondRecFolderSanshouBtn";
+			this.secondRecFolderSanshouBtn.Size = new System.Drawing.Size(50, 20);
+			this.secondRecFolderSanshouBtn.TabIndex = 1;
+			this.secondRecFolderSanshouBtn.Text = "参照";
+			this.secondRecFolderSanshouBtn.UseVisualStyleBackColor = true;
+			this.secondRecFolderSanshouBtn.Click += new System.EventHandler(this.SecondRecFolderSanshouBtnClick);
+			// 
 			// userIDHousoushaRadioBtn
 			// 
-			this.userIDHousoushaRadioBtn.Location = new System.Drawing.Point(206, 81);
+			this.userIDHousoushaRadioBtn.Location = new System.Drawing.Point(206, 121);
 			this.userIDHousoushaRadioBtn.Name = "userIDHousoushaRadioBtn";
 			this.userIDHousoushaRadioBtn.Size = new System.Drawing.Size(141, 27);
 			this.userIDHousoushaRadioBtn.TabIndex = 4;
 			this.userIDHousoushaRadioBtn.Text = "ユーザーID＋放送者名";
 			this.userIDHousoushaRadioBtn.UseVisualStyleBackColor = true;
-			// 
-			// userIDRadioBtn
-			// 
-			this.userIDRadioBtn.Location = new System.Drawing.Point(98, 81);
-			this.userIDRadioBtn.Name = "userIDRadioBtn";
-			this.userIDRadioBtn.Size = new System.Drawing.Size(87, 27);
-			this.userIDRadioBtn.TabIndex = 4;
-			this.userIDRadioBtn.Text = "ユーザーID";
-			this.userIDRadioBtn.UseVisualStyleBackColor = true;
-			// 
-			// ComIDComNameRadioBtn
-			// 
-			this.ComIDComNameRadioBtn.Location = new System.Drawing.Point(206, 104);
-			this.ComIDComNameRadioBtn.Name = "ComIDComNameRadioBtn";
-			this.ComIDComNameRadioBtn.Size = new System.Drawing.Size(141, 27);
-			this.ComIDComNameRadioBtn.TabIndex = 4;
-			this.ComIDComNameRadioBtn.Text = "コミュID＋コミュ名";
-			this.ComIDComNameRadioBtn.UseVisualStyleBackColor = true;
-			// 
-			// comIDRadioBtn
-			// 
-			this.comIDRadioBtn.Location = new System.Drawing.Point(98, 104);
-			this.comIDRadioBtn.Name = "comIDRadioBtn";
-			this.comIDRadioBtn.Size = new System.Drawing.Size(87, 27);
-			this.comIDRadioBtn.TabIndex = 4;
-			this.comIDRadioBtn.Text = "コミュID";
-			this.comIDRadioBtn.UseVisualStyleBackColor = true;
-			// 
-			// housoushaComIDRadioBtn
-			// 
-			this.housoushaComIDRadioBtn.Location = new System.Drawing.Point(163, 124);
-			this.housoushaComIDRadioBtn.Name = "housoushaComIDRadioBtn";
-			this.housoushaComIDRadioBtn.Size = new System.Drawing.Size(141, 27);
-			this.housoushaComIDRadioBtn.TabIndex = 4;
-			this.housoushaComIDRadioBtn.Text = "放送者名＋コミュID";
-			this.housoushaComIDRadioBtn.UseVisualStyleBackColor = true;
-			// 
-			// comIDHousoushaRadioBtn
-			// 
-			this.comIDHousoushaRadioBtn.Location = new System.Drawing.Point(5, 124);
-			this.comIDHousoushaRadioBtn.Name = "comIDHousoushaRadioBtn";
-			this.comIDHousoushaRadioBtn.Size = new System.Drawing.Size(141, 27);
-			this.comIDHousoushaRadioBtn.TabIndex = 4;
-			this.comIDHousoushaRadioBtn.Text = "コミュID＋放送者名";
-			this.comIDHousoushaRadioBtn.UseVisualStyleBackColor = true;
-			// 
-			// comNameRadioBtn
-			// 
-			this.comNameRadioBtn.Location = new System.Drawing.Point(5, 104);
-			this.comNameRadioBtn.Name = "comNameRadioBtn";
-			this.comNameRadioBtn.Size = new System.Drawing.Size(87, 27);
-			this.comNameRadioBtn.TabIndex = 4;
-			this.comNameRadioBtn.Text = "コミュ名";
-			this.comNameRadioBtn.UseVisualStyleBackColor = true;
-			// 
-			// housoushaRadioBtn
-			// 
-			this.housoushaRadioBtn.Checked = true;
-			this.housoushaRadioBtn.Location = new System.Drawing.Point(5, 81);
-			this.housoushaRadioBtn.Name = "housoushaRadioBtn";
-			this.housoushaRadioBtn.Size = new System.Drawing.Size(87, 27);
-			this.housoushaRadioBtn.TabIndex = 4;
-			this.housoushaRadioBtn.TabStop = true;
-			this.housoushaRadioBtn.Text = "放送者名";
-			this.housoushaRadioBtn.UseVisualStyleBackColor = true;
-			// 
-			// useSubFolderChk
-			// 
-			this.useSubFolderChk.Location = new System.Drawing.Point(4, 61);
-			this.useSubFolderChk.Name = "useSubFolderChk";
-			this.useSubFolderChk.Size = new System.Drawing.Size(216, 24);
-			this.useSubFolderChk.TabIndex = 3;
-			this.useSubFolderChk.Text = "以下のサブフォルダを作りそこに保存する";
-			this.useSubFolderChk.UseVisualStyleBackColor = true;
-			this.useSubFolderChk.CheckedChanged += new System.EventHandler(this.useSubFolderChk_CheckedChanged);
 			// 
 			// useDefaultRecFolderChk
 			// 
@@ -2282,6 +2242,99 @@ namespace namaichi
 			this.useDefaultRecFolderChk.Text = "デフォルトのまま使う(Recフォルダ)";
 			this.useDefaultRecFolderChk.UseVisualStyleBackColor = true;
 			this.useDefaultRecFolderChk.CheckedChanged += new System.EventHandler(this.useDefaultRecFolderChkBox_CheckedChanged);
+			// 
+			// userIDRadioBtn
+			// 
+			this.userIDRadioBtn.Location = new System.Drawing.Point(98, 121);
+			this.userIDRadioBtn.Name = "userIDRadioBtn";
+			this.userIDRadioBtn.Size = new System.Drawing.Size(87, 27);
+			this.userIDRadioBtn.TabIndex = 4;
+			this.userIDRadioBtn.Text = "ユーザーID";
+			this.userIDRadioBtn.UseVisualStyleBackColor = true;
+			// 
+			// ComIDComNameRadioBtn
+			// 
+			this.ComIDComNameRadioBtn.Location = new System.Drawing.Point(206, 144);
+			this.ComIDComNameRadioBtn.Name = "ComIDComNameRadioBtn";
+			this.ComIDComNameRadioBtn.Size = new System.Drawing.Size(141, 27);
+			this.ComIDComNameRadioBtn.TabIndex = 4;
+			this.ComIDComNameRadioBtn.Text = "コミュID＋コミュ名";
+			this.ComIDComNameRadioBtn.UseVisualStyleBackColor = true;
+			// 
+			// secondRecFolderText
+			// 
+			this.secondRecFolderText.Location = new System.Drawing.Point(15, 82);
+			this.secondRecFolderText.Margin = new System.Windows.Forms.Padding(2);
+			this.secondRecFolderText.Name = "secondRecFolderText";
+			this.secondRecFolderText.Size = new System.Drawing.Size(293, 19);
+			this.secondRecFolderText.TabIndex = 21;
+			// 
+			// comIDRadioBtn
+			// 
+			this.comIDRadioBtn.Location = new System.Drawing.Point(98, 144);
+			this.comIDRadioBtn.Name = "comIDRadioBtn";
+			this.comIDRadioBtn.Size = new System.Drawing.Size(87, 27);
+			this.comIDRadioBtn.TabIndex = 4;
+			this.comIDRadioBtn.Text = "コミュID";
+			this.comIDRadioBtn.UseVisualStyleBackColor = true;
+			// 
+			// housoushaComIDRadioBtn
+			// 
+			this.housoushaComIDRadioBtn.Location = new System.Drawing.Point(163, 164);
+			this.housoushaComIDRadioBtn.Name = "housoushaComIDRadioBtn";
+			this.housoushaComIDRadioBtn.Size = new System.Drawing.Size(141, 27);
+			this.housoushaComIDRadioBtn.TabIndex = 4;
+			this.housoushaComIDRadioBtn.Text = "放送者名＋コミュID";
+			this.housoushaComIDRadioBtn.UseVisualStyleBackColor = true;
+			// 
+			// useSecondRecFolderChk
+			// 
+			this.useSecondRecFolderChk.Location = new System.Drawing.Point(4, 61);
+			this.useSecondRecFolderChk.Name = "useSecondRecFolderChk";
+			this.useSecondRecFolderChk.Size = new System.Drawing.Size(325, 24);
+			this.useSecondRecFolderChk.TabIndex = 2;
+			this.useSecondRecFolderChk.Text = "上記フォルダに書き込めなかった場合に次のフォルダへ保存する";
+			this.useSecondRecFolderChk.UseVisualStyleBackColor = true;
+			this.useSecondRecFolderChk.CheckedChanged += new System.EventHandler(this.UseSecondRecFolderChkCheckedChanged);
+			// 
+			// comIDHousoushaRadioBtn
+			// 
+			this.comIDHousoushaRadioBtn.Location = new System.Drawing.Point(5, 164);
+			this.comIDHousoushaRadioBtn.Name = "comIDHousoushaRadioBtn";
+			this.comIDHousoushaRadioBtn.Size = new System.Drawing.Size(141, 27);
+			this.comIDHousoushaRadioBtn.TabIndex = 4;
+			this.comIDHousoushaRadioBtn.Text = "コミュID＋放送者名";
+			this.comIDHousoushaRadioBtn.UseVisualStyleBackColor = true;
+			// 
+			// comNameRadioBtn
+			// 
+			this.comNameRadioBtn.Location = new System.Drawing.Point(5, 144);
+			this.comNameRadioBtn.Name = "comNameRadioBtn";
+			this.comNameRadioBtn.Size = new System.Drawing.Size(87, 27);
+			this.comNameRadioBtn.TabIndex = 4;
+			this.comNameRadioBtn.Text = "コミュ名";
+			this.comNameRadioBtn.UseVisualStyleBackColor = true;
+			// 
+			// housoushaRadioBtn
+			// 
+			this.housoushaRadioBtn.Checked = true;
+			this.housoushaRadioBtn.Location = new System.Drawing.Point(5, 121);
+			this.housoushaRadioBtn.Name = "housoushaRadioBtn";
+			this.housoushaRadioBtn.Size = new System.Drawing.Size(87, 27);
+			this.housoushaRadioBtn.TabIndex = 4;
+			this.housoushaRadioBtn.TabStop = true;
+			this.housoushaRadioBtn.Text = "放送者名";
+			this.housoushaRadioBtn.UseVisualStyleBackColor = true;
+			// 
+			// useSubFolderChk
+			// 
+			this.useSubFolderChk.Location = new System.Drawing.Point(4, 101);
+			this.useSubFolderChk.Name = "useSubFolderChk";
+			this.useSubFolderChk.Size = new System.Drawing.Size(216, 24);
+			this.useSubFolderChk.TabIndex = 3;
+			this.useSubFolderChk.Text = "以下のサブフォルダを作りそこに保存する";
+			this.useSubFolderChk.UseVisualStyleBackColor = true;
+			this.useSubFolderChk.CheckedChanged += new System.EventHandler(this.useSubFolderChk_CheckedChanged);
 			// 
 			// recFolderSanshouBtn
 			// 
@@ -2354,6 +2407,7 @@ namespace namaichi
 			((System.ComponentModel.ISupportInitialize)(this.volumeBar)).EndInit();
 			this.tabPage6.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
+			this.groupBox4.PerformLayout();
 			this.groupBox10.ResumeLayout(false);
 			this.groupBox10.PerformLayout();
 			this.segmentRadioBtnPanel.ResumeLayout(false);
@@ -2383,6 +2437,11 @@ namespace namaichi
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button secondRecFolderSanshouBtn;
+		private System.Windows.Forms.CheckBox useSecondRecFolderChk;
+		private System.Windows.Forms.TextBox secondRecFolderText;
+		private System.Windows.Forms.Button afterConvertModeCmdDefaultBtn;
+		private System.Windows.Forms.TextBox afterConvertModeCmdText;
 		private System.Windows.Forms.Button chPlusHighRankBtn;
 		private System.Windows.Forms.Button chPlusLowRankBtn;
 		private System.Windows.Forms.ListBox chPlusQualityListBox;
@@ -2420,7 +2479,6 @@ namespace namaichi
 		private System.Windows.Forms.Label proxyPortLabel;
 		private System.Windows.Forms.GroupBox groupBox15;
 		private System.Windows.Forms.TabPage tabPage10;
-		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.CheckBox isRestoreLocationChkBox;
 		private System.Windows.Forms.RadioButton isCommentXmlInfo;
 		private System.Windows.Forms.CheckBox isSaveCommentOnlyRetryingRecChkBox;

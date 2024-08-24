@@ -6,7 +6,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace namaichi.gui
+namespace namaichi
 {
 	partial class commentForm
 	{
